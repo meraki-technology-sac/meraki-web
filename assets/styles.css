@@ -1,0 +1,179 @@
+/* Meraki Technology S.A.C. — hoja de estilos del sitio
+   Tokens de color y tipografía: ver 08_DISENO/GUIA_DISENO_v1.md */
+
+:root {
+  --tinta: #16233A;        /* azul tinta: texto y fondos oscuros */
+  --tinta-suave: #44506A;  /* texto secundario */
+  --papel: #EEF1EC;        /* fondo general, gris salvia muy claro */
+  --blanco: #FBFCFA;       /* superficies elevadas */
+  --maiz: #E3A72F;         /* acento: botones y detalles */
+  --maiz-oscuro: #B97F12;
+  --hoja: #2F6B5E;         /* verde: enlaces y estados */
+  --linea: #CBD2C8;        /* bordes y divisores */
+
+  --f-titulo: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-texto: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+
+  --ancho: 1120px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --radio: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font-family: var(--f-texto);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+img, svg { max-width: 100%; display: block; }
+a { color: var(--hoja); text-underline-offset: 3px; }
+a:hover { color: var(--tinta); }
+:focus-visible { outline: 3px solid var(--maiz); outline-offset: 3px; border-radius: 4px; }
+
+h1, h2, h3 { font-family: var(--f-titulo); line-height: 1.1; margin: 0 0 .5em; letter-spacing: -0.015em; }
+h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); font-weight: 700; }
+h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); font-weight: 700; }
+h3 { font-size: 1.25rem; font-weight: 600; }
+p { margin: 0 0 1em; max-width: 64ch; }
+
+.envoltura { max-width: var(--ancho); margin: 0 auto; padding: 0 var(--gutter); }
+.saltar { position: absolute; left: -999px; top: 8px; background: var(--tinta); color: var(--blanco); padding: 8px 14px; border-radius: 6px; z-index: 10; }
+.saltar:focus { left: 8px; }
+
+/* Cabecera */
+.cabecera { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--papel) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linea); }
+.cabecera .envoltura { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.marca { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--tinta); font-family: var(--f-titulo); font-weight: 700; font-size: 1.25rem; }
+.marca svg { width: 30px; height: 30px; }
+.marca small { font-family: var(--f-texto); font-weight: 400; font-size: .8rem; color: var(--tinta-suave); }
+.menu { display: flex; gap: 28px; align-items: center; }
+.menu a { color: var(--tinta); text-decoration: none; font-size: .98rem; }
+.menu a:hover { color: var(--hoja); }
+.boton {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--maiz); color: var(--tinta); font-weight: 600; text-decoration: none;
+  padding: 12px 22px; border-radius: 999px; border: 2px solid var(--maiz);
+  transition: background .15s, border-color .15s;
+}
+.boton:hover { background: var(--maiz-oscuro); border-color: var(--maiz-oscuro); color: var(--blanco); }
+.boton.secundario { background: transparent; border-color: var(--tinta); }
+.boton.secundario:hover { background: var(--tinta); color: var(--blanco); border-color: var(--tinta); }
+.menu .boton { padding: 9px 18px; }
+.abrir-menu { display: none; background: none; border: 1px solid var(--linea); border-radius: 8px; padding: 8px 12px; font: inherit; color: var(--tinta); cursor: pointer; }
+
+@media (max-width: 760px) {
+  .abrir-menu { display: block; }
+  .menu { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 0; background: var(--blanco); border-bottom: 1px solid var(--linea); padding: 8px var(--gutter) 20px; }
+  .menu.abierto { display: flex; }
+  .menu a { padding: 12px 0; width: 100%; border-bottom: 1px solid var(--linea); }
+  .menu .boton { margin-top: 14px; width: auto; border-bottom: 2px solid var(--maiz); }
+}
+
+/* Portada: la definición de "meraki" es el elemento memorable */
+.portada { padding: clamp(48px, 9vw, 110px) 0 clamp(56px, 8vw, 96px); }
+.portada .envoltura { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: end; }
+.portada h1 { max-width: 14ch; }
+.portada .bajada { font-size: 1.2rem; color: var(--tinta-suave); max-width: 46ch; margin-bottom: 1.6em; }
+.acciones { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.definicion {
+  background: var(--tinta); color: var(--papel);
+  border-radius: var(--radio); padding: 30px 30px 26px;
+  position: relative;
+}
+.definicion .palabra { font-family: var(--f-titulo); font-size: clamp(2.6rem, 5vw, 3.4rem); font-weight: 700; line-height: 1; margin: 0; color: var(--maiz); }
+.definicion .fonetica { font-size: .95rem; opacity: .75; margin: 8px 0 18px; }
+.definicion .fonetica i { font-style: italic; }
+.definicion ol { margin: 0; padding-left: 1.3em; }
+.definicion li { margin-bottom: .7em; max-width: 40ch; }
+.definicion li::marker { color: var(--maiz); font-weight: 700; }
+.definicion .uso { border-top: 1px solid rgba(238,241,236,.2); margin-top: 18px; padding-top: 14px; font-size: .95rem; opacity: .85; }
+
+/* Secciones */
+.seccion { padding: clamp(56px, 8vw, 100px) 0; }
+.seccion.clara { background: var(--blanco); border-top: 1px solid var(--linea); border-bottom: 1px solid var(--linea); }
+.encabezado { display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; margin-bottom: 44px; align-items: end; }
+.encabezado p { color: var(--tinta-suave); margin: 0; }
+@media (max-width: 860px) {
+  .portada .envoltura, .encabezado { grid-template-columns: 1fr; }
+  .encabezado { gap: 8px; }
+}
+
+/* Servicios: lista con filas, no tarjetas */
+.servicios { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--tinta); }
+.servicios li { display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; padding: 26px 0; border-bottom: 1px solid var(--linea); }
+.servicios h3 { margin: 0; display: flex; gap: 14px; align-items: flex-start; }
+.servicios h3 svg { flex: none; width: 26px; height: 26px; color: var(--hoja); margin-top: 1px; }
+.servicios p { margin: 0; color: var(--tinta-suave); }
+.servicios .detalle { font-size: .92rem; margin-top: 8px; color: var(--tinta); }
+@media (max-width: 760px) { .servicios li { grid-template-columns: 1fr; gap: 10px; } }
+
+/* Proceso: es una secuencia real, por eso va numerado */
+.proceso { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; counter-reset: paso; }
+.proceso li { counter-increment: paso; padding: 0 22px 0 0; position: relative; }
+.proceso li::before {
+  content: counter(paso);
+  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: var(--papel); border: 2px solid var(--tinta); font-family: var(--f-titulo); font-weight: 700; margin-bottom: 16px; position: relative; z-index: 1;
+}
+.proceso li::after { content: ""; position: absolute; top: 22px; left: 44px; right: 0; height: 2px; background: var(--linea); }
+.proceso li:last-child::after { display: none; }
+.proceso li:last-child::before { background: var(--maiz); border-color: var(--maiz); }
+.proceso h3 { font-size: 1.1rem; }
+.proceso p { font-size: .95rem; color: var(--tinta-suave); }
+@media (max-width: 900px) {
+  .proceso { grid-template-columns: 1fr; gap: 6px; }
+  .proceso li { padding: 0 0 18px 64px; }
+  .proceso li::before { position: absolute; left: 0; top: 0; }
+  .proceso li::after { left: 21px; top: 44px; bottom: 0; right: auto; width: 2px; height: auto; }
+}
+
+/* Tecnologías */
+.herramientas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin: 0; }
+.herramientas div { border-left: 3px solid var(--maiz); padding-left: 16px; }
+.herramientas dt { font-family: var(--f-titulo); font-weight: 600; font-size: 1.05rem; margin-bottom: 6px; }
+.herramientas dd { margin: 0; color: var(--tinta-suave); font-size: .97rem; }
+@media (max-width: 860px) { .herramientas { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .herramientas { grid-template-columns: 1fr; } }
+
+/* Nosotros */
+.nosotros { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); }
+.datos { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; border-top: 2px solid var(--tinta); padding-top: 20px; }
+.datos dt { color: var(--tinta-suave); font-size: .95rem; }
+.datos dd { margin: 0; font-weight: 500; }
+@media (max-width: 860px) { .nosotros { grid-template-columns: 1fr; } }
+
+/* Contacto */
+.contacto { background: var(--tinta); color: var(--papel); }
+.contacto h2 { color: var(--blanco); max-width: 18ch; }
+.contacto p { color: rgba(238,241,236,.82); }
+.contacto .envoltura { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.canales { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.canales a {
+  display: flex; align-items: center; gap: 16px; padding: 18px 20px; border-radius: var(--radio);
+  border: 1px solid rgba(238,241,236,.25); color: var(--papel); text-decoration: none;
+  transition: border-color .15s, background .15s;
+}
+.canales a:hover { border-color: var(--maiz); background: rgba(227,167,47,.08); color: var(--blanco); }
+.canales svg { width: 28px; height: 28px; flex: none; color: var(--maiz); }
+.canales span { display: block; font-size: .85rem; opacity: .75; }
+.canales strong { font-weight: 600; font-size: 1.05rem; word-break: break-word; }
+@media (max-width: 860px) { .contacto .envoltura { grid-template-columns: 1fr; } }
+
+/* Pie */
+.pie { background: var(--tinta); color: rgba(238,241,236,.7); font-size: .9rem; border-top: 1px solid rgba(238,241,236,.15); padding: 28px 0 36px; }
+.pie .envoltura { display: flex; flex-wrap: wrap; gap: 12px 32px; justify-content: space-between; }
+.pie a { color: rgba(238,241,236,.85); }
+.pie p { margin: 0; }
+
+/* Páginas de texto (privacidad, 404) */
+.texto { padding: clamp(48px, 8vw, 90px) 0; }
+.texto .envoltura { max-width: 760px; }
+.texto h2 { font-size: 1.4rem; margin-top: 1.6em; }
+.texto li { margin-bottom: .4em; }
